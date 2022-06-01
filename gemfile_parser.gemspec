@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary = "A simple Gemfile parser."
   spec.homepage = "https://github.com/ydah/gemfile_parser"
   spec.license = "MIT"
-  spec.required_ruby_version = ">= 2.6.0"
+  spec.required_ruby_version = ">= 3.1.0"
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = spec.homepage
