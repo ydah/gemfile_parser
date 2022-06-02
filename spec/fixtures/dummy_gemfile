@@ -1,0 +1,22 @@
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+gem "foo", "1.0.0"
+gem "bar", "~> 1.1.1", require: false
+gem "baz"
+
+gem "with_group", group: :development
+gem "with_some_group", "~> 1.0.0", group: %i[development test]
+
+group :block do
+  gem "foo_block", "1.0.0"
+  gem "bar_block", "~> 1.1.1", require: false
+  gem "baz_block"
+end
+
+group :development, :test do
+  gem "foo_multiple_block", "1.0.0"
+  gem "bar_multiple_block", "~> 1.1.1", require: false
+  gem "baz_multiple_block"
+end

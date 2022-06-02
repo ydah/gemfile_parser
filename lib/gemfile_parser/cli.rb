@@ -7,7 +7,10 @@ module GemfileParser
   class Cli < ::Thor
     desc "groups", "Obtains the group(s) to which the specified Gem belongs."
     def groups(gem_name)
-      Commands::Groups.call(gem_name:)
+      Commands::Groups.call(
+        gem_name:,
+        gemfile_path: "Gemfile"
+      )
     end
   end
 end
