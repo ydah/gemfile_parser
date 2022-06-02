@@ -5,9 +5,14 @@ RSpec.describe GemfileParser::Commands::Groups do
     subject do
       described_class.call(
         gem_name: gem_name,
-        gemfile_path: "spec/fixtures/dummy_gemfile"
+        gemfile_path: "spec/fixtures/dummy_gemfile",
+        ignore: ignore,
+        derimiter: derimiter
       )
     end
+
+    let(:ignore) { false }
+    let(:derimiter) { " " }
 
     before do
       allow(Kernel).to receive(:abort)

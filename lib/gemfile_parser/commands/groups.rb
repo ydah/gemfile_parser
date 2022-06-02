@@ -6,35 +6,59 @@ module GemfileParser
       class << self
         # @param [String] gem_name
         # @param [String] gemfile_path
+        # @param [Boolean] ignore
+        # @param [String] derimiter
         def call(
           gem_name:,
-          gemfile_path:
+          gemfile_path:,
+          ignore:,
+          derimiter:
         )
           new(
             gem_name: gem_name,
-            gemfile_path: gemfile_path
+            gemfile_path: gemfile_path,
+            ignore: ignore,
+            derimiter: derimiter
           ).call
         end
       end
 
       def initialize(
         gem_name:,
-        gemfile_path:
+        gemfile_path:,
+        ignore:,
+        derimiter:
       )
         @gem_name = gem_name
         @gemfile_path = gemfile_path
+        @ignore = ignore
+        @derimiter = derimiter
       end
 
       def call
-        ::Kernel.abort("Specified gem does not exist.") unless include_node
+        ::Kernel.abort("Specified gem does not exist.") unless gem_node
 
-        case include_node.root_node.type
-        when :block then ::Kernel.puts(block_group.join(" "))
+        if @ignore
+          ::Kernel.puts(exclude_groups.sort.join(@derimiter))
+        else
+          ::Kernel.puts(include_groups.sort.join(@derimiter))
+        end
+      end
+
+      def include_groups
+        case gem_node.root_node.type
+        when :block then block_group
         when :send then ::Kernel.abort("Please implement here.") end # TODO: Implement
       end
 
-      def include_node
-        @include_node ||= NodeDetector.call(
+      def exclude_groups
+        case gem_node.root_node.type
+        when :block then ::Kernel.puts(block_group.sort.join(" "))
+        when :send then ::Kernel.abort("Please implement here.") end # TODO: Implement
+      end
+
+      def gem_node
+        @gem_node ||= NodeDetector.call(
           src_node: AstConverter.call(file_path: @gemfile_path),
           node: AstConverter.call(string: @gem_name)
         )
@@ -49,7 +73,7 @@ module GemfileParser
       end
 
       def group_nodes
-        @group_nodes ||= include_node.root_node.children.first.children
+        @group_nodes ||= gem_node.root_node.children.first.children
       end
 
       def group?(node)
