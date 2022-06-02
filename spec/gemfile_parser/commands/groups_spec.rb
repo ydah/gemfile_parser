@@ -4,7 +4,7 @@ RSpec.describe GemfileParser::Commands::Groups do
   describe ".call" do
     subject do
       described_class.call(
-        gem_name:,
+        gem_name: gem_name,
         gemfile_path: "spec/fixtures/dummy_gemfile"
       )
     end

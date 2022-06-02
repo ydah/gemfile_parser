@@ -11,8 +11,8 @@ module GemfileParser
           gemfile_path:
         )
           new(
-            gem_name:,
-            gemfile_path:
+            gem_name: gem_name,
+            gemfile_path: gemfile_path
           ).call
         end
       end

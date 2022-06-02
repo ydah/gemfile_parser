@@ -10,8 +10,8 @@ module GemfileParser
         node:
       )
         new(
-          src_node:,
-          node:
+          src_node: src_node,
+          node: node
         ).call
       end
     end

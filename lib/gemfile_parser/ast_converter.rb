@@ -13,8 +13,8 @@ module GemfileParser
         string: nil
       )
         new(
-          file_path:,
-          string:
+          file_path: file_path,
+          string: string
         ).call
       end
     end
