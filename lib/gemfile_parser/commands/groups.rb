@@ -29,7 +29,7 @@ module GemfileParser
         ::Kernel.abort("Specified gem does not exist.") unless include_node
 
         case include_node.root_node.type
-        when :block then block_group
+        when :block then ::Kernel.puts(block_group.join(" "))
         when :send then ::Kernel.abort("Please implement here.") end # TODO: Implement
       end
 
@@ -41,23 +41,23 @@ module GemfileParser
       end
 
       def block_group
-        if group?
-          ::Kernel.puts(
-            groups.map { |group_sym| group_sym.children.first }.join(" ")
-          )
+        if group?(group_nodes)
+          groups(group_nodes).map { |group_sym| group_sym.children.first }
+        else
+          ::Kernel.abort("Please implement here.") # TODO: Implement
         end
-      end
-
-      def group?
-        group_nodes.select { |node| node == :group }.any?
-      end
-
-      def groups
-        group_nodes.select { |node| node.instance_of?(Parser::AST::Node) }
       end
 
       def group_nodes
         @group_nodes ||= include_node.root_node.children.first.children
+      end
+
+      def group?(node)
+        node.select { |n| n == :group }.any?
+      end
+
+      def groups(node)
+        node.select { |n| n.instance_of?(Parser::AST::Node) }
       end
     end
   end
