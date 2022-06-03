@@ -1,4 +1,4 @@
-# GemfileParser
+# GemfileParser [![Gem Version](https://badge.fury.io/rb/gemfile_parser.svg)](https://badge.fury.io/rb/gemfile_parser)
 
 A simple Gemfile parser.
 
