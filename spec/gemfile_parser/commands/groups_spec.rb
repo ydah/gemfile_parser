@@ -62,5 +62,17 @@ RSpec.describe GemfileParser::Commands::Groups do
         )
       end
     end
+
+    context "when `derimiter: :`" do
+      let(:gem_name) { "foo_multiple_block" }
+      let(:derimiter) { ":" }
+
+      it "puts expected group name with derimiter" do
+        subject
+        expect(Kernel).to have_received(:puts).with(
+          "development:test"
+        )
+      end
+    end
   end
 end
