@@ -74,5 +74,17 @@ RSpec.describe GemfileParser::Commands::Groups do
         )
       end
     end
+
+    context "when `ignore: true`" do
+      let(:gem_name) { "foo_block" }
+      let(:ignore) { true }
+
+      it "puts expected group name with derimiter" do
+        subject
+        expect(Kernel).to have_received(:puts).with(
+          "default development test"
+        )
+      end
+    end
   end
 end

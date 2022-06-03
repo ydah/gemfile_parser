@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "bundler"
+
 module GemfileParser
   module Commands
     class Groups
@@ -39,7 +41,7 @@ module GemfileParser
         ::Kernel.abort("Specified gem does not exist.") unless gem_node
 
         if @ignore
-          ::Kernel.puts(exclude_groups.sort.join(@derimiter))
+          ::Kernel.puts((bundler_def.groups - include_groups).sort.join(@derimiter))
         else
           ::Kernel.puts(include_groups.sort.join(@derimiter))
         end
@@ -51,10 +53,8 @@ module GemfileParser
         when :send then ::Kernel.abort("Please implement here.") end # TODO: Implement
       end
 
-      def exclude_groups
-        case gem_node.root_node.type
-        when :block then ::Kernel.puts(block_group.sort.join(" "))
-        when :send then ::Kernel.abort("Please implement here.") end # TODO: Implement
+      def bundler_def
+        Bundler::Definition.build(@gemfile_path, nil, nil)
       end
 
       def gem_node
