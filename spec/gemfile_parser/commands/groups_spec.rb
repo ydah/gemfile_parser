@@ -7,12 +7,12 @@ RSpec.describe GemfileParser::Commands::Groups do
         gem_name: gem_name,
         gemfile_path: "spec/fixtures/dummy_gemfile",
         ignore: ignore,
-        derimiter: derimiter
+        delimiter: delimiter
       )
     end
 
     let(:ignore) { false }
-    let(:derimiter) { " " }
+    let(:delimiter) { " " }
 
     before do
       allow(Kernel).to receive(:abort)
@@ -63,11 +63,11 @@ RSpec.describe GemfileParser::Commands::Groups do
       end
     end
 
-    context "when `derimiter: :`" do
+    context "when `delimiter: :`" do
       let(:gem_name) { "foo_multiple_block" }
-      let(:derimiter) { ":" }
+      let(:delimiter) { ":" }
 
-      it "puts expected group name with derimiter" do
+      it "puts expected group name with delimiter" do
         subject
         expect(Kernel).to have_received(:puts).with(
           "development:test"
@@ -79,7 +79,7 @@ RSpec.describe GemfileParser::Commands::Groups do
       let(:gem_name) { "foo_block" }
       let(:ignore) { true }
 
-      it "puts expected group name with derimiter" do
+      it "puts expected group name with delimiter" do
         subject
         expect(Kernel).to have_received(:puts).with(
           "default development test"

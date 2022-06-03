@@ -9,18 +9,18 @@ module GemfileParser
         # @param [String] gem_name
         # @param [String] gemfile_path
         # @param [Boolean] ignore
-        # @param [String] derimiter
+        # @param [String] delimiter
         def call(
           gem_name:,
           gemfile_path:,
           ignore:,
-          derimiter:
+          delimiter:
         )
           new(
             gem_name: gem_name,
             gemfile_path: gemfile_path,
             ignore: ignore,
-            derimiter: derimiter
+            delimiter: delimiter
           ).call
         end
       end
@@ -29,21 +29,21 @@ module GemfileParser
         gem_name:,
         gemfile_path:,
         ignore:,
-        derimiter:
+        delimiter:
       )
         @gem_name = gem_name
         @gemfile_path = gemfile_path
         @ignore = ignore
-        @derimiter = derimiter
+        @delimiter = delimiter
       end
 
       def call
         ::Kernel.abort("Specified gem does not exist.") unless gem_node
 
         if @ignore
-          ::Kernel.puts((bundler_def.groups - include_groups).sort.join(@derimiter))
+          ::Kernel.puts((bundler_def.groups - include_groups).sort.join(@delimiter))
         else
-          ::Kernel.puts(include_groups.sort.join(@derimiter))
+          ::Kernel.puts(include_groups.sort.join(@delimiter))
         end
       end
 
