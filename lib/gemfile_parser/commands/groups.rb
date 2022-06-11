@@ -50,7 +50,7 @@ module GemfileParser
       def include_groups
         case gem_node.root_node.type
         when :block then block_group
-        when :send then ::Kernel.abort("Please implement here.") end # TODO: Implement
+        when :send then send_group end
       end
 
       def bundler_def
@@ -72,8 +72,20 @@ module GemfileParser
         end
       end
 
+      def send_group
+        if with_group_nodes.last.type == :array
+          with_group_nodes.last.children.map { |n| n.children.first }
+        else
+          [with_group_nodes.last.children.first]
+        end
+      end
+
       def group_nodes
         @group_nodes ||= gem_node.root_node.children.first.children
+      end
+
+      def with_group_nodes
+        @with_group_nodes ||= gem_node.root_node.children.last.children.first.children
       end
 
       def group?(node)

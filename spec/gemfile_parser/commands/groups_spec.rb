@@ -22,7 +22,7 @@ RSpec.describe GemfileParser::Commands::Groups do
     context "when `gem_name: with_group`" do
       let(:gem_name) { "with_group" }
 
-      xit "puts expected group name" do
+      it "puts expected group name" do
         subject
         expect(Kernel).to have_received(:puts).with(
           "development"
@@ -33,7 +33,7 @@ RSpec.describe GemfileParser::Commands::Groups do
     context "when `gem_name: with_some_group`" do
       let(:gem_name) { "with_some_group" }
 
-      xit "puts expected group name" do
+      it "puts expected group name" do
         subject
         expect(Kernel).to have_received(:puts).with(
           "development test"
