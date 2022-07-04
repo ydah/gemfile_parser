@@ -1,4 +1,4 @@
-# GemfileParser [![Gem Version](https://badge.fury.io/rb/gemfile_parser.svg)](https://badge.fury.io/rb/gemfile_parser)
+# GemfileParser [![Gem Version](https://badge.fury.io/rb/gemfile_parser.svg)](https://badge.fury.io/rb/gemfile_parser) [![Maintainability](https://api.codeclimate.com/v1/badges/88f18df50b88c8ec2cd0/maintainability)](https://codeclimate.com/github/ydah/gemfile_parser/maintainability)
 
 A simple Gemfile parser.
 
