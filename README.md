@@ -1,4 +1,6 @@
-# GemfileParser [![Gem Version](https://badge.fury.io/rb/gemfile_parser.svg)](https://badge.fury.io/rb/gemfile_parser) [![Maintainability](https://api.codeclimate.com/v1/badges/88f18df50b88c8ec2cd0/maintainability)](https://codeclimate.com/github/ydah/gemfile_parser/maintainability)
+# GemfileParser
+
+[![Gem Version](https://badge.fury.io/rb/gemfile_parser.svg)](https://badge.fury.io/rb/gemfile_parser) [![Maintainability](https://api.codeclimate.com/v1/badges/88f18df50b88c8ec2cd0/maintainability)](https://codeclimate.com/github/ydah/gemfile_parser/maintainability)
 
 A simple Gemfile parser.
 
@@ -6,11 +8,15 @@ A simple Gemfile parser.
 
 Install the gem and add to the application's Gemfile by executing:
 
-    $ bundle add gemfile_parser
+```command
+bundle add gemfile_parser
+```
 
 If bundler is not being used to manage dependencies, install the gem by executing:
 
-    $ gem install gemfile_parser
+```command
+gem install gemfile_parser
+```
 
 ## Usage
 
